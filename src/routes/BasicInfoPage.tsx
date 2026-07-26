@@ -2,7 +2,9 @@ import { useEffect } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
-import { Button, Card, Input, Select } from '../design-system'
+import { Button, Card, Input } from '../design-system'
+import { FormInput } from '../components/FormInput'
+import { FormSelect } from '../components/FormSelect'
 import { PageHeader } from '../components/PageHeader'
 import { PRIORITY_OPTIONS } from '../constants/resourceOptions'
 import { useResourceContext } from '../hooks/useResourceContext'
@@ -71,35 +73,30 @@ export function BasicInfoPage() {
         <Form onSubmit={onSubmit}>
           <Input label="Resource name" value={basicInfo.resourceName} state="locked" />
 
-          <Input
-            label="Owner"
-            placeholder="Full name"
-            error={form.formState.errors.owner?.message}
-            {...form.register('owner')}
-          />
+          <FormInput form={form} name="owner" label="Owner" placeholder="Full name" />
 
-          <Input
-            label="Email"
+          <FormInput
+            form={form}
+            name="email"
             type="email"
+            label="Email"
             placeholder="owner@example.com"
-            error={form.formState.errors.email?.message}
-            {...form.register('email')}
           />
 
-          <Input
+          <FormInput
+            form={form}
+            name="description"
             label="Description"
             multiline
             rows={4}
             placeholder="What is this resource for?"
-            error={form.formState.errors.description?.message}
-            {...form.register('description')}
           />
 
-          <Select
+          <FormSelect
+            form={form}
+            name="priority"
             label="Priority"
             options={PRIORITY_SELECT_OPTIONS}
-            error={form.formState.errors.priority?.message}
-            {...form.register('priority')}
           />
 
           {form.formState.errors.root ? (

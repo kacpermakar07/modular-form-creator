@@ -2,7 +2,9 @@ import { useEffect } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
 import styled from 'styled-components'
-import { Button, Card, CheckboxGroup, Input, Select } from '../design-system'
+import { Button, Card, CheckboxGroup } from '../design-system'
+import { FormInput } from '../components/FormInput'
+import { FormSelect } from '../components/FormSelect'
 import { PageHeader } from '../components/PageHeader'
 import {
   PROJECT_CATEGORY_OPTIONS,
@@ -89,26 +91,26 @@ export function ProjectDetailsPage() {
 
       <Card variant="outline">
         <Form onSubmit={onSubmit}>
-          <Input
+          <FormInput
+            form={form}
+            name="projectName"
             label="Project name"
             placeholder="e.g. Internal Portal Revamp"
-            error={form.formState.errors.projectName?.message}
-            {...form.register('projectName')}
           />
 
-          <Input
+          <FormInput
+            form={form}
+            name="budget"
             label="Budget"
             inputMode="numeric"
             placeholder="e.g. 15000"
-            error={form.formState.errors.budget?.message}
-            {...form.register('budget')}
           />
 
-          <Select
+          <FormSelect
+            form={form}
+            name="category"
             label="Category"
             options={CATEGORY_SELECT_OPTIONS}
-            error={form.formState.errors.category?.message}
-            {...form.register('category')}
           />
 
           <Controller
