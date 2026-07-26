@@ -5,25 +5,45 @@ import { Button } from '../design-system'
 const MODULE_LOAD_ERROR_PATTERN =
   /dynamically imported module|error loading dynamically imported module|importing a module script failed/i
 
+interface RouteErrorDetails {
+  title: string
+  message: string
+}
+
 function isModuleLoadError(error: unknown): boolean {
   return error instanceof Error && MODULE_LOAD_ERROR_PATTERN.test(error.message)
 }
 
+function describeRouteError(error: unknown): RouteErrorDetails {
+  if (isModuleLoadError(error)) {
+    return {
+      title: 'Connection problem',
+      message:
+        "We couldn't load part of the app — this usually means the connection dropped. Check you're online and try again.",
+    }
+  }
+
+  if (isRouteErrorResponse(error)) {
+    return {
+      title: 'Something went wrong',
+      message: `${error.status} ${error.statusText}`,
+    }
+  }
+
+  if (error instanceof Error) {
+    return { title: 'Something went wrong', message: error.message }
+  }
+
+  return { title: 'Something went wrong', message: 'Something went wrong.' }
+}
+
 export function RouteErrorBoundary() {
   const error = useRouteError()
-  const isOffline = isModuleLoadError(error)
-
-  const message = isOffline
-    ? "We couldn't load part of the app — this usually means the connection dropped. Check you're online and try again."
-    : isRouteErrorResponse(error)
-      ? `${error.status} ${error.statusText}`
-      : error instanceof Error
-        ? error.message
-        : 'Something went wrong.'
+  const { title, message } = describeRouteError(error)
 
   return (
     <Wrapper>
-      <Title>{isOffline ? 'Connection problem' : 'Something went wrong'}</Title>
+      <Title>{title}</Title>
 
       <Description>{message}</Description>
 
