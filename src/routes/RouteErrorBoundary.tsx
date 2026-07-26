@@ -24,11 +24,14 @@ export function RouteErrorBoundary() {
   return (
     <Wrapper>
       <Title>{isOffline ? 'Connection problem' : 'Something went wrong'}</Title>
+
       <Description>{message}</Description>
+
       <Actions>
         <Button variant="secondary" onClick={() => window.location.reload()}>
           Reload page
         </Button>
+
         <Button onClick={() => window.location.assign('/resources')}>
           Back to resources
         </Button>

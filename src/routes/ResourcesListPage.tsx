@@ -92,6 +92,7 @@ export function ResourcesListPage() {
             value={nameFilter}
             onChange={(event) => handleNameFilterChange(event.target.value)}
           />
+
           <Select
             label="Status"
             options={STATUS_FILTER_OPTIONS}
@@ -100,6 +101,7 @@ export function ResourcesListPage() {
               handleStatusChange(event.target.value as ResourceStatus | '')
             }
           />
+
           <Select
             label="Sort"
             options={SORT_OPTIONS}
@@ -135,8 +137,10 @@ export function ResourcesListPage() {
                 <RowLink to={`/resources/${resource.resourceId}`}>
                   {resource.name}
                 </RowLink>
+
                 <StatusBadge status={resource.status} />
               </RowMain>
+
               <IconButton
                 type="button"
                 variant="ghost"

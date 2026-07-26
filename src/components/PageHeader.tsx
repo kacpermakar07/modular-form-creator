@@ -12,8 +12,10 @@ export function PageHeader({ title, subtitle, actions }: PageHeaderProps) {
     <Wrapper>
       <Texts>
         <Title>{title}</Title>
+
         {subtitle ? <Subtitle>{subtitle}</Subtitle> : null}
       </Texts>
+
       {actions ? <Actions>{actions}</Actions> : null}
     </Wrapper>
   )

@@ -32,10 +32,13 @@ export function CreateResourceDrawer({ isOpen, onClose }: CreateResourceDrawerPr
   function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     const trimmed = resourceName.trim()
+
     if (!trimmed) {
       setError('Resource name is required')
+
       return
     }
+
     createMutation.mutate(trimmed)
   }
 
@@ -57,6 +60,7 @@ export function CreateResourceDrawer({ isOpen, onClose }: CreateResourceDrawerPr
           disabled={createMutation.isPending}
           autoFocus
         />
+
         <Actions>
           <Button type="submit" disabled={createMutation.isPending}>
             {createMutation.isPending ? 'Creating…' : 'Create resource'}

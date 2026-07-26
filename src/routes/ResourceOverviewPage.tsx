@@ -21,6 +21,7 @@ export function ResourceOverviewPage() {
 
   async function handleProvision() {
     setProvisionError(undefined)
+
     try {
       await workspace.provision()
       showToast('Resource provisioned')
@@ -31,6 +32,7 @@ export function ResourceOverviewPage() {
 
   async function handleSubmitChanges() {
     setSubmitError(undefined)
+
     try {
       await workspace.submitBufferedChanges()
       showToast('Changes submitted')
@@ -48,6 +50,7 @@ export function ResourceOverviewPage() {
           isComplete={workspace.isBasicInfoComplete}
           to="basic-info"
         />
+
         <ModuleProgressCard
           title="Project Details"
           description="Budget, category, and team members involved."
@@ -64,12 +67,15 @@ export function ResourceOverviewPage() {
       {workspace.isBuffered ? (
         <Card variant="elevated">
           <SectionTitle>Unsaved changes</SectionTitle>
+
           <SectionText>
             This resource is completed, so your edits are held locally until you submit
             them. If you leave or refresh the page before submitting, these changes are
             lost.
           </SectionText>
+
           {submitError ? <ErrorText>{submitError}</ErrorText> : null}
+
           <Actions>
             <Button
               variant="ghost"
@@ -78,6 +84,7 @@ export function ResourceOverviewPage() {
             >
               Discard changes
             </Button>
+
             <Button
               onClick={handleSubmitChanges}
               disabled={workspace.isSubmittingChanges}
@@ -91,11 +98,14 @@ export function ResourceOverviewPage() {
       {isDraft ? (
         <Card variant="outline">
           <SectionTitle>Provisioning</SectionTitle>
+
           <SectionText>
             Provisioning marks this resource as completed. It is allowed only once both
             modules above are complete, and cannot be undone.
           </SectionText>
+
           {provisionError ? <ErrorText>{provisionError}</ErrorText> : null}
+
           <Actions>
             <Button
               onClick={handleProvision}
@@ -104,6 +114,7 @@ export function ResourceOverviewPage() {
               {workspace.isProvisioning ? 'Provisioning…' : 'Provision resource'}
             </Button>
           </Actions>
+
           {!workspace.canProvision ? (
             <HelperText>Both modules must be complete before provisioning.</HelperText>
           ) : null}

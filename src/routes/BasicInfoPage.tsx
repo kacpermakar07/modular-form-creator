@@ -43,9 +43,11 @@ export function BasicInfoPage() {
 
   const onSubmit = form.handleSubmit(async (values) => {
     const payload = { ...values, resourceName: basicInfo.resourceName }
+
     try {
       await workspace.saveBasicInfo(payload)
       form.reset(payload)
+
       if (!isCompleted) {
         showToast('Basic Info saved')
       }
@@ -64,15 +66,18 @@ export function BasicInfoPage() {
             : 'Complete every field to unlock Project Details.'
         }
       />
+
       <Card variant="outline">
         <Form onSubmit={onSubmit}>
           <Input label="Resource name" value={basicInfo.resourceName} state="locked" />
+
           <Input
             label="Owner"
             placeholder="Full name"
             error={form.formState.errors.owner?.message}
             {...form.register('owner')}
           />
+
           <Input
             label="Email"
             type="email"
@@ -80,6 +85,7 @@ export function BasicInfoPage() {
             error={form.formState.errors.email?.message}
             {...form.register('email')}
           />
+
           <Input
             label="Description"
             multiline
@@ -88,15 +94,18 @@ export function BasicInfoPage() {
             error={form.formState.errors.description?.message}
             {...form.register('description')}
           />
+
           <Select
             label="Priority"
             options={PRIORITY_SELECT_OPTIONS}
             error={form.formState.errors.priority?.message}
             {...form.register('priority')}
           />
+
           {form.formState.errors.root ? (
             <ErrorText>{form.formState.errors.root.message}</ErrorText>
           ) : null}
+
           <Actions>
             <Button
               type="submit"

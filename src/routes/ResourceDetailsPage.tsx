@@ -31,23 +31,28 @@ export function ResourceDetailsPage() {
 
       <Card variant="outline">
         <SectionTitle>Basic Info</SectionTitle>
+
         <DefinitionList>
           <Row>
             <Term>Resource name</Term>
             <Value>{basicInfo.resourceName || '—'}</Value>
           </Row>
+
           <Row>
             <Term>Owner</Term>
             <Value>{basicInfo.owner || '—'}</Value>
           </Row>
+
           <Row>
             <Term>Email</Term>
             <Value>{basicInfo.email || '—'}</Value>
           </Row>
+
           <Row>
             <Term>Description</Term>
             <Value>{basicInfo.description || '—'}</Value>
           </Row>
+
           <Row>
             <Term>Priority</Term>
             <Value>{basicInfo.priority || '—'}</Value>
@@ -57,21 +62,26 @@ export function ResourceDetailsPage() {
 
       <Card variant="outline">
         <SectionTitle>Project Details</SectionTitle>
+
         <DefinitionList>
           <Row>
             <Term>Project name</Term>
             <Value>{projectDetails.projectName || '—'}</Value>
           </Row>
+
           <Row>
             <Term>Budget</Term>
             <Value>{projectDetails.budget || '—'}</Value>
           </Row>
+
           <Row>
             <Term>Category</Term>
             <Value>{projectDetails.category || '—'}</Value>
           </Row>
+
           <Row>
             <Term>Team members</Term>
+
             <Value>
               {projectDetails.options.length > 0
                 ? projectDetails.options.join(', ')

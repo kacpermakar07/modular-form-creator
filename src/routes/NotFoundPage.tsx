@@ -6,7 +6,9 @@ export function NotFoundPage() {
   return (
     <Wrapper>
       <Title>Page not found</Title>
+
       <Description>The page you're looking for doesn't exist.</Description>
+
       <StyledLink to="/resources">
         <Button variant="secondary">Back to resources</Button>
       </StyledLink>

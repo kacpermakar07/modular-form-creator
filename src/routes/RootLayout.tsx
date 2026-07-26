@@ -7,6 +7,7 @@ export function RootLayout() {
       <Header>
         <BrandLink to="/resources">Resources Manager</BrandLink>
       </Header>
+
       <Main>
         <Outlet />
       </Main>

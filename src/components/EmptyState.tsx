@@ -9,6 +9,7 @@ export function EmptyState({ title, description }: EmptyStateProps) {
   return (
     <Wrapper>
       <Title>{title}</Title>
+
       {description ? <Description>{description}</Description> : null}
     </Wrapper>
   )

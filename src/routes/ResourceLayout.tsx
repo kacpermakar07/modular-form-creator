@@ -27,6 +27,7 @@ export function ResourceLayout() {
   if (workspace.isError || !workspace.resource) {
     const isNotFound =
       workspace.error instanceof ApiError && workspace.error.status === 404
+
     return (
       <ErrorState
         message={isNotFound ? 'Resource not found.' : getErrorMessage(workspace.error)}

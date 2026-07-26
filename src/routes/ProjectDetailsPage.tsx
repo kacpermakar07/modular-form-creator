@@ -46,6 +46,7 @@ export function ProjectDetailsPage() {
     return (
       <>
         <PageHeader title="Project Details" />
+
         <Card variant="outline">
           <LockedText>
             Complete Basic Info first — Project Details unlocks once every Basic Info
@@ -66,6 +67,7 @@ export function ProjectDetailsPage() {
     try {
       await workspace.saveProjectDetails(values)
       form.reset(values)
+
       if (!isCompleted) {
         showToast('Project Details saved')
       }
@@ -84,6 +86,7 @@ export function ProjectDetailsPage() {
             : 'Fill in the project scope to finish this module.'
         }
       />
+
       <Card variant="outline">
         <Form onSubmit={onSubmit}>
           <Input
@@ -92,6 +95,7 @@ export function ProjectDetailsPage() {
             error={form.formState.errors.projectName?.message}
             {...form.register('projectName')}
           />
+
           <Input
             label="Budget"
             inputMode="numeric"
@@ -99,12 +103,14 @@ export function ProjectDetailsPage() {
             error={form.formState.errors.budget?.message}
             {...form.register('budget')}
           />
+
           <Select
             label="Category"
             options={CATEGORY_SELECT_OPTIONS}
             error={form.formState.errors.category?.message}
             {...form.register('category')}
           />
+
           <Controller
             control={form.control}
             name="options"
@@ -118,9 +124,11 @@ export function ProjectDetailsPage() {
               />
             )}
           />
+
           {form.formState.errors.root ? (
             <ErrorText>{form.formState.errors.root.message}</ErrorText>
           ) : null}
+
           <Actions>
             <Button
               type="submit"

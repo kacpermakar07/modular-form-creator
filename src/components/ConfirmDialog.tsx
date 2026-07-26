@@ -23,10 +23,12 @@ export function ConfirmDialog({
   return (
     <Drawer title={title} isOpen={isOpen} onClose={onCancel}>
       <Message>{message}</Message>
+
       <Actions>
         <Button variant="ghost" onClick={onCancel} disabled={isConfirming}>
           Cancel
         </Button>
+
         <Button variant="primary" onClick={onConfirm} disabled={isConfirming}>
           {confirmLabel}
         </Button>

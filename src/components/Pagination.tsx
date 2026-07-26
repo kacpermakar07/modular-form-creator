@@ -22,9 +22,11 @@ export function Pagination({ page, totalPages, onPageChange }: PaginationProps) 
       >
         Previous
       </Button>
+
       <PageLabel>
         Page {page} of {totalPages}
       </PageLabel>
+
       <Button
         variant="secondary"
         size="small"

@@ -21,11 +21,14 @@ export function ModuleProgressCard({
     <StyledCard variant="outline">
       <Header>
         <Title>{title}</Title>
+
         <Badge variant={isComplete ? 'success' : 'neutral'}>
           {isComplete ? 'Complete' : 'Incomplete'}
         </Badge>
       </Header>
+
       <Description>{description}</Description>
+
       {disabledReason ? (
         <Locked>{disabledReason}</Locked>
       ) : (

@@ -10,6 +10,7 @@ export function ErrorState({ message, onRetry }: ErrorStateProps) {
   return (
     <Wrapper role="alert">
       <Message>{message}</Message>
+
       {onRetry ? (
         <Button variant="secondary" size="small" onClick={onRetry}>
           Try again

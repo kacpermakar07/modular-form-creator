@@ -15,6 +15,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
 
   const showToast = useCallback((message: string, variant: ToastVariant = 'success') => {
     const id = Date.now()
+
     setToasts((prev) => [...prev, { id, message, variant }])
     setTimeout(() => {
       setToasts((prev) => prev.filter((toast) => toast.id !== id))
@@ -24,6 +25,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
+
       <ToastStack>
         {toasts.map((toast) => (
           <ToastItem key={toast.id} $variant={toast.variant} role="status">
